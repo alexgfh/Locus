@@ -4,6 +4,8 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
 
+    useLibrary 'org.apache.http.legacy'
+
     defaultConfig {
         applicationId "com.dcc.hackathon.locus"
         minSdkVersion 15
