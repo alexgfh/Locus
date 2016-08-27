@@ -3,6 +3,7 @@ package com.dcc.hackathon.locus;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -15,7 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
-        GoogleMap.OnMapLongClickListener {
+        GoogleMap.OnMapLongClickListener, CreateEventDialog.EditNameDialogListener {
 
     private GoogleMap mMap;
 
@@ -56,22 +57,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
-    private void addEvent(LatLng latLng) {
-        Event event = new Event("titulo padrão", latLng.latitude, latLng.longitude);
+    private void addEvent(String title, LatLng latLng) {
+        Event event = new Event(title, latLng.latitude, latLng.longitude);
         EventProvider.addEvent(event);
-        mMap.addMarker(new MarkerOptions().position(latLng).title("Titulo padrão"));
+        mMap.addMarker(new MarkerOptions().position(latLng).title(title));
         Toast toast = Toast.makeText(this.getApplicationContext(), "Evento Criado!", Toast.LENGTH_LONG);
         toast.show();
     }
 
+    LatLng currentCreation = null;
+
     @Override
     public void onMapLongClick(LatLng latLng) {
 
-        this.addEvent(latLng);
+        FragmentManager fm = getSupportFragmentManager();
+        CreateEventDialog createEventDialog = new CreateEventDialog();
+        createEventDialog.show(fm, "fragment_edit_name");
+        currentCreation = latLng;
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+    public void onFinishEditDialog(String inputText) {
+        this.addEvent(inputText, currentCreation);
     }
 }
