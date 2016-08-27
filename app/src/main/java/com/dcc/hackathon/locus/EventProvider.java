@@ -12,8 +12,8 @@ public class EventProvider {
 
     public static ArrayList<Event> getEventList() {
         ArrayList<Event> list = new ArrayList<Event>();
-        Event event1 = new Event("primeiro", 4.0f, 20.0f);
-        Event event2 = new Event("segundo", -5.2f, 18.5f);
+        Event event1 = new Event("primeiro", "descricao1", 4.0f, 20.0f);
+        Event event2 = new Event("segundo", "descricao2", -5.2f, 18.5f);
         list.add(event1);
         list.add(event2);
         return list;
@@ -25,21 +25,22 @@ public class EventProvider {
 
     public static ArrayList<Event> getEventListFromURL() {
         JSONObject jArray = JSONfunctions.getJSON(url, 2);
+        ArrayList<Event> result = new ArrayList<>();
 
         for(int i=0; i < jArray.length(); i++) {
-
             try {
                 JSONObject jObject = jArray.getJSONObject(""+i);
-
-
-            //String name = jObject.getString("name");
-            //String tab1_text = jObject.getString("tab1_text");
-            //int active = jObject.getInt("active");
+                String titulo = jObject.getString("titulo");
+                String descricao = jObject.getString("descricao");
+                double latitude = jObject.getDouble("latitude");
+                double longitude = jObject.getDouble("longitude");
+                Event event = new Event(titulo, descricao, latitude, longitude);
+                result.add(event);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-        return null;
+        return result;
     }
 
     public static void addEvent(Event event) {

@@ -57,8 +57,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
-    private void addEvent(String title, LatLng latLng) {
-        Event event = new Event(title, latLng.latitude, latLng.longitude);
+    private void addEvent(String title, String description, LatLng latLng) {
+        Event event = new Event(title, description, latLng.latitude, latLng.longitude);
         EventProvider.addEvent(event);
         mMap.addMarker(new MarkerOptions().position(latLng).title(title));
         Toast toast = Toast.makeText(this.getApplicationContext(), "Evento Criado!", Toast.LENGTH_LONG);
@@ -77,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onFinishEditDialog(String inputText) {
-        this.addEvent(inputText, currentCreation);
+    public void onFinishEditDialog(String title, String description) {
+        this.addEvent(title, description, currentCreation);
     }
 }
