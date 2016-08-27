@@ -1,14 +1,17 @@
 package com.dcc.hackathon.locus;
 
+import android.content.Context;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 /**
  * Created by Alex on 8/27/2016.
  */
 public class EventProvider {
+
+
+   String titulo = "Testando";
 
     public static ArrayList<Event> getEventList() {
         ArrayList<Event> list = new ArrayList<Event>();
@@ -43,7 +46,10 @@ public class EventProvider {
         return result;
     }
 
-    public static void addEvent(Event event) {
+    public static void addEvent(Event event,Context ctx) {
+    String method = "register";
 
+        BackgroundTask backgroundTask = new BackgroundTask(ctx);
+        backgroundTask.execute(method,event.title);
     }
 }
