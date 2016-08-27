@@ -1,7 +1,9 @@
 package com.dcc.hackathon.locus;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,7 +14,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
+        GoogleMap.OnMapLongClickListener {
 
     private GoogleMap mMap;
 
@@ -40,6 +43,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        mMap.setOnMapLongClickListener(this);
+
         // Add a marker in Sydney and move the camera
         ArrayList<Event> list = EventProvider.getEventList();
         for (Event event : list) {
@@ -49,5 +54,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+
+    private void addEvent(LatLng latLng) {
+        Event event = new Event("titulo padrão", latLng.latitude, latLng.longitude);
+        EventProvider.addEvent(event);
+        mMap.addMarker(new MarkerOptions().position(latLng).title("Titulo padrão"));
+        Toast toast = Toast.makeText(this.getApplicationContext(), "Evento Criado!", Toast.LENGTH_LONG);
+        toast.show();
+    }
+
+    @Override
+    public void onMapLongClick(LatLng latLng) {
+
+        this.addEvent(latLng);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
     }
 }

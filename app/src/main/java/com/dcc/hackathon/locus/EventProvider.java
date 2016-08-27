@@ -15,4 +15,8 @@ public class EventProvider {
         list.add(event2);
         return list;
     }
+
+    public static void addEvent(Event event) {
+
+    }
 }
