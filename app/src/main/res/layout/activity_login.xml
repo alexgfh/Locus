@@ -29,7 +29,7 @@
             android:layout_height="100dp"
             android:id="@+id/ivLogo"
             android:src="@drawable/logo"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             />
         <ImageView
             android:layout_width="wrap_content"
@@ -49,8 +49,9 @@
             android:textColor="#ccffffff"
             android:textColorHint="#ccffffff"
             android:paddingLeft="20dp"
-            android:layout_marginTop="80dp"
-            />
+            android:layout_marginTop="130dp"
+            android:singleLine="true"
+            android:textCursorDrawable="@drawable/color_cursor"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -63,8 +64,9 @@
             android:textColor="#ccffffff"
             android:textColorHint="#ccffffff"
             android:paddingLeft="20dp"
-
-            />
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:inputType="textPassword"
+            android:singleLine="true" />
 
         <Button
             android:layout_width="match_parent"
