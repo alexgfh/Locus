@@ -59,7 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void addEvent(String title, LatLng latLng) {
         Event event = new Event(title, latLng.latitude, latLng.longitude);
-        EventProvider.addEvent(event);
+        EventProvider.addEvent(event, this);
         mMap.addMarker(new MarkerOptions().position(latLng).title(title));
         Toast toast = Toast.makeText(this.getApplicationContext(), "Evento Criado!", Toast.LENGTH_LONG);
         toast.show();

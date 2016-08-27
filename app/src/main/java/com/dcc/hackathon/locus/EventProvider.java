@@ -1,11 +1,16 @@
 package com.dcc.hackathon.locus;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 /**
  * Created by Alex on 8/27/2016.
  */
 public class EventProvider {
+
+
+   String titulo = "Testando";
 
     public static ArrayList<Event> getEventList() {
         ArrayList<Event> list = new ArrayList<Event>();
@@ -16,7 +21,10 @@ public class EventProvider {
         return list;
     }
 
-    public static void addEvent(Event event) {
-
+    public static void addEvent(Event event,Context ctx) {
+    String method = "register";
+        String titulo = "bla";
+        BackgroundTask backgroundTask = new BackgroundTask(ctx);
+        backgroundTask.execute(method,titulo);
     }
 }
