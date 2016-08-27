@@ -1,7 +1,5 @@
 package com.dcc.hackathon.locus;
 
-import java.util.ArrayList;
-
 /**
  * Created by Alex on 8/27/2016.
  */
