@@ -39,7 +39,14 @@ public class BackgroundTask extends AsyncTask<String, Void, String>{
 
         String reg_url = "http://homepages.dcc.ufmg.br/~andre.assis/register.php";
         String method = params[0];
-        String titulo = params[1];
+        String title = params[1];
+        String description = params[2];
+        String latitude = params[3];
+        String longitude = params[4];
+        String tipo = params[5];
+        String inicio = params[6];
+        String fim = params[7];
+
         if(method.equals("register"))
         {
             try {
@@ -49,7 +56,13 @@ public class BackgroundTask extends AsyncTask<String, Void, String>{
                 httpURLConnection.setDoOutput(true);
                 OutputStream OS = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(OS,"UTF-8"));
-                String data = URLEncoder.encode("titulo","UTF-8") + "=" + URLEncoder.encode(titulo,"UTF-8");
+                String data = URLEncoder.encode("titulo","UTF-8") + "=" + URLEncoder.encode(title,"UTF-8")
+                        + "&" + URLEncoder.encode("descricao","UTF-8") + "=" + URLEncoder.encode(description,"UTF-8")
+                        + "&" + URLEncoder.encode("latitude","UTF-8") + "=" + URLEncoder.encode(latitude,"UTF-8")
+                        + "&" + URLEncoder.encode("longitude","UTF-8") + "=" + URLEncoder.encode(longitude,"UTF-8")
+                        + "&" + URLEncoder.encode("tipo","UTF-8") + "=" + URLEncoder.encode(tipo,"UTF-8")
+                        + "&" + URLEncoder.encode("inicio","UTF-8") + "=" + URLEncoder.encode(inicio,"UTF-8")
+                        + "&" + URLEncoder.encode("fim","UTF-8") + "=" + URLEncoder.encode(fim,"UTF-8");
                 // Para adicionar mais basta colocar um + " & " + URLEncoder.encode("descricao","UTF-8") + " = " + URLEncoder.encode(descricao,"UTF-8");
                 bufferedWriter.write(data);
                 bufferedWriter.flush();

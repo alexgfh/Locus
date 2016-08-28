@@ -4,6 +4,7 @@ import android.content.Context;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Alex on 8/27/2016.
@@ -47,9 +48,14 @@ public class EventProvider {
     }
 
     public static void addEvent(Event event,Context ctx) {
-    String method = "register";
+        String method = "register";
+
+        int tipo = 7; //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
+        Date inicio = new Date(); //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
+        Date fim = new Date(); //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
 
         BackgroundTask backgroundTask = new BackgroundTask(ctx);
-        backgroundTask.execute(method,event.title);
+        backgroundTask.execute(method,event.title, event.description, String.valueOf(event.latitude),
+                String.valueOf(event.longitude),String.valueOf(tipo),String.valueOf(inicio),String.valueOf(fim) );
     }
 }
