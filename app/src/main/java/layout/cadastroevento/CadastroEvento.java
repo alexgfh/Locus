@@ -18,7 +18,11 @@ import android.widget.TimePicker;
 import com.dcc.hackathon.locus.R;
 import com.dcc.hackathon.locus.TiposDeEvento;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class CadastroEvento extends AppCompatActivity {
 
@@ -185,12 +189,25 @@ public class CadastroEvento extends AppCompatActivity {
         EditText descricao  = (EditText)findViewById(R.id.editText7);
 
         Intent intent = new Intent();
+        String inicio = datainicio.getText().toString() + " " + horainicio.getText().toString();
+        String fim = datafim.getText().toString() + " " + horafim.getText().toString();
+
+        DateFormat cadastroDF = new SimpleDateFormat("d/M/y H:m");
+        Date dateInicio = null, dateFim = null;
+        try {
+            dateInicio = cadastroDF.parse(inicio);
+            dateFim = cadastroDF.parse(fim);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        DateFormat df = new SimpleDateFormat("y-M-d H:m:s");
 
         intent.putExtra("titulo",  titulo.getText().toString());
         int tipo = (int)spinner.getSelectedItemId();
         intent.putExtra("tipo",  tipo);
-        intent.putExtra("inicio",  datainicio.getText().toString() + " " + horainicio.getText().toString());
-        intent.putExtra("fim",  datafim.getText().toString() + " " + horafim.getText().toString());
+        intent.putExtra("inicio",  df.format(dateInicio));
+        intent.putExtra("fim",  df.format(dateFim));
         intent.putExtra("local",  local.getText().toString());
         intent.putExtra("descricao",  descricao.getText().toString());
         setResult(Activity.RESULT_OK, intent);
