@@ -41,6 +41,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import layout.cadastroevento.CadastroEvento;
+import layout.visualizarEvento.VisualizarEventos;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleMap.OnMapLongClickListener, CreateEventDialog.EditNameDialogListener,
@@ -78,6 +79,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         mMap.setOnMapLongClickListener(this);
+        mMap.setOnInfoWindowClickListener(this);
 
         // Add a marker in Sydney and move the camera
 /*        ArrayList<Event> list = EventProvider.getEventList(this);
@@ -133,7 +135,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ArrayList<Event> eventList = getEventsFromJSON(allEventsJSON);
         mMap.clear();
         for (Event event : eventList) {
-            mMap.addMarker(new MarkerOptions().position(new LatLng(event.latitude, event.longitude)).title(event.title));
+            Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(event.latitude, event.longitude)).title(event.title));
+            marker.setTag(event);
         }
     }
 
@@ -177,10 +180,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onInfoWindowClick(Marker marker) {
+        Intent intent = new Intent(this, VisualizarEventos.class);
+        Event event = (Event) marker.getTag();
+        intent.putExtra("titulo", event.title);
+        intent.putExtra("latitude", event.latitude);
+        intent.putExtra("longitude", event.longitude);
+        intent.putExtra("descricao", event.description);
+        startActivity(intent);
     }
 
     public class BackgroundTask extends AsyncTask<String, Void, String> {
-
         Context ctx;
 
         BackgroundTask(Context ctx)

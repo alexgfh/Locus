@@ -163,7 +163,5 @@ public class BackgroundTask extends AsyncTask<String, Void, String>{
     protected void onPostExecute(String result)
     {
 
-        Toast.makeText(ctx,result,Toast.LENGTH_LONG).show();
-
     }
 }

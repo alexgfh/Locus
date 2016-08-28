@@ -41,9 +41,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="layout.visualizarEvento.VisualizarEventos">
+        <activity android:name="layout.visualizarEvento.VisualizarEventos"/>
 
-        </activity>
+
         <activity android:name="layout.cadastroevento.CadastroEvento" />
         <activity android:name="layout.cadastrarusuario.cadastrar_usuario"/>
     </application>
