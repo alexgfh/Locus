@@ -33,7 +33,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="Explorar" />
-        <activity android:name="layout.login.Login">
+        <activity android:name="layout.login.Login" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,14 +41,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="layout.visualizarEvento.VisualizarEventos"
+            android:name="layout.visualizarEvento.VisualizarEventos" android:screenOrientation="portrait"
             android:label="Evento"></activity>
         <activity
-            android:name="layout.cadastroevento.CadastroEvento"
+            android:name="layout.cadastroevento.CadastroEvento" android:screenOrientation="portrait"
             android:label="Cadastrar Evento" />
-        <activity android:name="layout.cadastrarusuario.cadastrar_usuario" />
+        <activity android:name="layout.cadastrarusuario.cadastrar_usuario" android:screenOrientation="portrait" />
         <activity
-            android:name="layout.editarevento.editarevento"
+            android:name="layout.editarevento.editarevento" android:screenOrientation="portrait"
             android:label="Editar Evento" />
     </application>
 
