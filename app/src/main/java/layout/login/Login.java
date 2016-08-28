@@ -21,7 +21,6 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
-
     }
 
     public void login(View v) {

@@ -19,7 +19,7 @@ public class CreateEventDialog extends DialogFragment implements TextView.OnEdit
     private EditText mEditText;
 
     public interface EditNameDialogListener {
-        void onFinishEditDialog(String inputText);
+        void onFinishEditDialog(String title, String description);
     }
 
     public CreateEventDialog() {
@@ -46,7 +46,7 @@ public class CreateEventDialog extends DialogFragment implements TextView.OnEdit
         if (EditorInfo.IME_ACTION_DONE == actionId) {
             // Return input text to activity
             EditNameDialogListener activity = (EditNameDialogListener) getActivity();
-            activity.onFinishEditDialog(mEditText.getText().toString());
+            activity.onFinishEditDialog(mEditText.getText().toString(), "placeholder");
             this.dismiss();
             return true;
         }
