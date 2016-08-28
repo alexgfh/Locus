@@ -3,6 +3,10 @@ package com.dcc.hackathon.locus;
 import android.content.Context;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.Date;
@@ -14,16 +18,6 @@ public class EventProvider {
 
 
    String titulo = "Testando";
-
-    public static ArrayList<Event> getEventListf() {
-        ArrayList<Event> list = new ArrayList<Event>();
-        Event event1 = new Event("primeiro", "descricao1", 4.0f, 20.0f);
-        Event event2 = new Event("segundo", "descricao2", -5.2f, 18.5f);
-        list.add(event1);
-        list.add(event2);
-        return list;
-
-    }
 
     private static String url = "http://homepages.dcc.ufmg.br/~andre.assis/get_all_events.php";
     private static int timeout = 2;
@@ -56,9 +50,14 @@ public class EventProvider {
                 String descricao = jObject.getString("descricao");
                 double latitude = jObject.getDouble("latitude");
                 double longitude = jObject.getDouble("longitude");
-                Event event = new Event(titulo, descricao, latitude, longitude);
+                String startDate = jObject.getString("inicio");
+                String endDate = jObject.getString("fim");
+                DateFormat df = new SimpleDateFormat("y-M-d H:m:s");
+                Event event = new Event(titulo, descricao, latitude, longitude, df.parse(startDate), df.parse(endDate));
                 result.add(event);
             } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
@@ -70,12 +69,14 @@ public class EventProvider {
         String method = "registerEvent";
 
         int tipo = 7; //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
-        Date inicio = new Date(); //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
-        Date fim = new Date(); //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
+        Date inicio = event.startDate; //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
+        Date fim = event.endDate; //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
+
+        DateFormat df = new SimpleDateFormat("y-M-d H:m:s");
 
         BackgroundTask backgroundTask = new BackgroundTask(ctx);
         backgroundTask.execute(method,event.title, event.description, String.valueOf(event.latitude),
-                String.valueOf(event.longitude),String.valueOf(tipo),String.valueOf(inicio),String.valueOf(fim) );
+                String.valueOf(event.longitude),String.valueOf(tipo),df.format(inicio),df.format(fim) );
 
         /*
         String method = "registerUser";

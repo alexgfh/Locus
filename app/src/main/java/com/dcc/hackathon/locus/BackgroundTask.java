@@ -137,6 +137,13 @@ public class BackgroundTask extends AsyncTask<String, Void, String>{
                 bufferedWriter.close();
                 OS.close();
                 InputStream IS = httpURLConnection.getInputStream();
+                BufferedReader br = new BufferedReader(new InputStreamReader(IS));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                br.close();
                 IS.close();
                 return "Registration Success";
 
