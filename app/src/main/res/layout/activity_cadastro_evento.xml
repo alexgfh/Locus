@@ -28,7 +28,6 @@
             android:layout_alignParentEnd="true"
             android:hint="Título do evento"
             android:backgroundTint="@color/laranja"
-            android:paddingLeft="10dp"
             android:textCursorDrawable="@drawable/color_cursor_laranja" />
 
         <Spinner
@@ -63,7 +62,6 @@
                 android:layout_alignEnd="@+id/spinner1"
                 android:hint="Data de Início"
                 android:layout_weight="0.4"
-                android:paddingLeft="10dp"
                 android:backgroundTint="@color/laranja"
                 android:textCursorDrawable="@drawable/color_cursor_laranja"
                 />
@@ -81,7 +79,6 @@
                 android:layout_alignRight="@+id/editText4"
                 android:layout_alignEnd="@+id/editText4"
                 android:layout_weight="0.4"
-                android:paddingLeft="10dp"
                 android:backgroundTint="@color/laranja"
                 android:textCursorDrawable="@drawable/color_cursor_laranja"
                 />
@@ -149,7 +146,7 @@
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/laranja"
             android:textCursorDrawable="@drawable/color_cursor_laranja"/>
-        
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"

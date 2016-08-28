@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.dcc.hackathon.locus.MapsActivity;
 import com.dcc.hackathon.locus.R;
 
+import layout.cadastrarusuario.cadastrar_usuario;
 import layout.cadastroevento.CadastroEvento;
 
 public class Login extends AppCompatActivity {
@@ -25,5 +26,9 @@ public class Login extends AppCompatActivity {
 
     public void login(View v) {
         startActivity(new Intent(this, MapsActivity.class));
+    }
+
+    public void cadastrar(View v) {
+        startActivity(new Intent(this, cadastrar_usuario.class));
     }
 }

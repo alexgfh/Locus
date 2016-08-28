@@ -44,6 +44,20 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:id="@+id/etNome"
+            android:layout_gravity="center_horizontal"
+            android:hint="Nome"
+            android:background="#33ffffff"
+            android:textColor="#ccffffff"
+            android:textColorHint="#ccffffff"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="100dp"
+            android:singleLine="true"
+            android:textCursorDrawable="@drawable/color_cursor_white"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:id="@+id/etUsuario"
             android:layout_gravity="center_horizontal"
             android:hint="Usuário"
@@ -73,8 +87,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Entrar"
-            android:id="@+id/btEntrar"
+            android:text="Cadastrar"
+            android:id="@+id/btCadastrar"
             android:layout_gravity="center_horizontal"
             android:layout_below="@+id/etSenha"
             android:layout_marginTop="10dp"
@@ -82,17 +96,5 @@
             android:textColor="#ccffffff"
 
             android:onClick="login" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Não tem conta? Cadastrar"
-            android:id="@+id/textView"
-            android:gravity="center"
-            android:textColor="@color/White"
-            android:onClick="cadastrar"/>
-
-
     </LinearLayout>
 </RelativeLayout>
