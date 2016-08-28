@@ -47,4 +47,9 @@ public class CadastroEvento extends AppCompatActivity {
         setResult(Activity.RESULT_OK, intent);
         finish();
     }
+
+    public void cancel(View v) {
+        setResult(Activity.RESULT_CANCELED, new Intent());
+        finish();
+    }
 }
