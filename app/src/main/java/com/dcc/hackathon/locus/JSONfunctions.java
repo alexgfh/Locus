@@ -1,5 +1,6 @@
 package com.dcc.hackathon.locus;
 
+import android.os.AsyncTask;
 import android.util.Log;
 
 import org.apache.http.HttpEntity;
@@ -59,10 +60,10 @@ public class JSONfunctions {
                     return jArray;
             }
 
-        } catch (MalformedURLException ex) {
-            //Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            //Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         } finally {
             if (c != null) {
                 try {

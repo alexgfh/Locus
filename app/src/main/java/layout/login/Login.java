@@ -25,7 +25,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void login(View v) {
-        startActivity(new Intent(this, CadastroEvento.class));
+        startActivity(new Intent(this, MapsActivity.class));
     }
 
     public void cadastrar(View v) {
