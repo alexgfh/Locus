@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.dcc.hackathon.locus.BackgroundTask;
 import com.dcc.hackathon.locus.MapsActivity;
@@ -29,6 +30,10 @@ public class cadastrar_usuario extends AppCompatActivity {
 
         backgroundTask.execute(method,nome.getText().toString(),usuario.getText().toString(),senha.getText().toString());
         //startActivity(new Intent(this, MapsActivity.class));
+
+        Toast.makeText(this,"Cadastro Realizado com sucesso!",Toast.LENGTH_LONG).show();
+
+        finish();
     }
 
 }
