@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="layout.cadastroevento.CadastroEvento"
+    android:background="@color/White">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/etEdTitulo"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:hint="Título do evento"
+            android:backgroundTint="@color/laranja"
+            android:textCursorDrawable="@drawable/color_cursor_laranja" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dialog"
+            android:layout_below="@+id/etEdTipo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText4"
+            android:layout_marginTop="10dp" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:paddingRight="10dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data Início"
+                    android:id="@+id/textView4" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6" >
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/etEdDataInicio"
+                        android:text="12/12/2012"
+                        android:backgroundTint="@color/laranja"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        />
+
+                    <Button
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text=""
+                        android:gravity="center"
+                        android:id="@+id/btDataInicio"
+                        android:background="@drawable/calendar" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:paddingLeft="10dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hora Início"
+                    android:id="@+id/textView5" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/etEdHoraInicio"
+                        android:text="12:30"
+                        android:backgroundTint="@color/laranja"
+                        android:gravity="center"
+                        android:layout_weight="0.3"
+                        android:focusable="false"
+                        android:cursorVisible="false"/>
+
+                    <Button
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text=""
+                        android:gravity="center"
+                        android:id="@+id/btHoraInicio"
+                        android:background="@drawable/clock" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText4"
+            android:layout_marginTop="10dp"
+            >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data Fim"
+                    android:id="@+id/textView2" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/etEdDataFim"
+                        android:text="12/12/2012"
+                        android:backgroundTint="@color/laranja"
+                        android:layout_weight="0.8"
+                        android:gravity="center"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+                        />
+
+                    <Button
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text=""
+                        android:gravity="center"
+                        android:id="@+id/btDataFim"
+                        android:background="@drawable/calendar"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hora Fim"
+                    android:id="@+id/textView3" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/etEdHoraFim"
+                        android:text="12:30"
+                        android:backgroundTint="@color/laranja"
+                        android:gravity="center"
+                        android:layout_weight="0.3"
+                        android:focusable="false"
+                        android:cursorVisible="false"
+
+                        />
+
+                    <Button
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:text=""
+                        android:gravity="center"
+                        android:id="@+id/btHoraFim"
+                        android:background="@drawable/clock"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etEdLocal"
+            android:hint="Local"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/laranja"
+            android:textCursorDrawable="@drawable/color_cursor_laranja"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/etEdDescricao"
+            android:hint="Descrição"
+            android:lines="5"
+            android:gravity="top"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/laranja"
+            android:textCursorDrawable="@drawable/color_cursor_laranja"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Criar"
+                android:id="@+id/button"
+                android:layout_weight="0.3"
+                android:onClick="salvar"
+                android:clickable="false" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:id="@+id/button2"
+                android:layout_weight="0.3"
+                android:clickable="false"
+                android:onClick="cancel" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Deletar"
+                android:id="@+id/button3"
+                android:layout_weight="0.3"
+                android:clickable="false"
+                android:onClick="deletar"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+
