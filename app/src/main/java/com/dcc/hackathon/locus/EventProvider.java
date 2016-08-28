@@ -50,10 +50,11 @@ public class EventProvider {
                 String descricao = jObject.getString("descricao");
                 double latitude = jObject.getDouble("latitude");
                 double longitude = jObject.getDouble("longitude");
+                int tipo = jObject.getInt("tipo");
                 String startDate = jObject.getString("inicio");
                 String endDate = jObject.getString("fim");
                 DateFormat df = new SimpleDateFormat("y-M-d H:m:s");
-                Event event = new Event(titulo, descricao, latitude, longitude, df.parse(startDate), df.parse(endDate));
+                Event event = new Event(titulo, descricao, latitude, longitude, tipo, df.parse(startDate), df.parse(endDate));
                 result.add(event);
             } catch (JSONException e) {
                 e.printStackTrace();

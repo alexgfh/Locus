@@ -30,6 +30,7 @@ public class VisualizarEventos extends AppCompatActivity {
         titulo.setText(intent.getStringExtra("titulo"));
         //tipo.setText(intent.getStringExtra("tipo"));
         descricao.setText(intent.getStringExtra("descricao"));
+        datahora.setText(intent.getStringExtra("inicio") + " até " + intent.getStringExtra("fim"));
         String locationText = intent.getDoubleExtra("latitude", 0.0) + ", " + intent.getDoubleExtra("longitude", 0.0);
         local.setText(locationText);
 

@@ -10,14 +10,16 @@ public class Event {
     String description;
     double latitude;
     double longitude;
+    int tipo;
     Date startDate;
     Date endDate;
 
-    public Event(String title, String description, double latitude, double longitude, Date startDate, Date endDate) {
+    public Event(String title, String description, double latitude, double longitude, int tipo, Date startDate, Date endDate) {
         this.title = title;
         this.description = description;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.tipo = tipo;
         this.startDate = startDate;
         this.endDate = endDate;
     }

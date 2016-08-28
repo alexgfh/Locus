@@ -128,7 +128,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String fim = jObject.getString("fim");
 
                 DateFormat df = new SimpleDateFormat("y-M-d H:m:s");
-                Event event = new Event(titulo, descricao, latitude, longitude, df.parse(inicio), df.parse(fim));
+                Event event = new Event(titulo, descricao, latitude, longitude, tipo, df.parse(inicio), df.parse(fim));
                 result.add(event);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -143,19 +143,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ArrayList<Event> eventList = getEventsFromJSON(allEventsJSON);
         mMap.clear();
         for (Event event : eventList) {
-            float hue = BitmapDescriptorFactory.HUE_RED;
-            /*Date now = new Date();
+            Date now = new Date();
+            if (event.endDate.before(now)) {
+                continue;
+            }
+            float hue = BitmapDescriptorFactory.HUE_BLUE;
             if (event.startDate.before(now) && event.endDate.after(now) ) {
                 hue = BitmapDescriptorFactory.HUE_RED;
-            }*/
+            }
             Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(event.latitude, event.longitude)).title(event.title)
             .icon(BitmapDescriptorFactory.defaultMarker(hue)));
             marker.setTag(event);
         }
     }
 
-    private void addEvent(String title, String description, LatLng latLng, Date startDate, Date endDate) {
-        Event event = new Event(title, description, latLng.latitude, latLng.longitude, startDate, endDate);
+    private void addEvent(String title, String description, LatLng latLng, int tipo, Date startDate, Date endDate) {
+        Event event = new Event(title, description, latLng.latitude, latLng.longitude, tipo, startDate, endDate);
         EventProvider.addEvent(event, this);
         Marker marker = mMap.addMarker(new MarkerOptions().position(latLng).title(title));
         marker.setTag(event);
@@ -182,6 +185,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if (resultCode == RESULT_OK) {
                 String titulo = data.getStringExtra("titulo");
                 String descricao = data.getStringExtra("descricao");
+                int tipo = data.getIntExtra("tipo", 0);
                 DateFormat df = new SimpleDateFormat("y-M-d H:m:s");
                 Date startDate = null;
                 Date endDate = null;
@@ -191,7 +195,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                addEvent(titulo, descricao, currentCreation, startDate, endDate);
+                addEvent(titulo, descricao, currentCreation, tipo, startDate, endDate);
             }
         }
     }
