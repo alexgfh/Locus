@@ -12,6 +12,8 @@ import android.widget.EditText;
 import com.dcc.hackathon.locus.MapsActivity;
 import com.dcc.hackathon.locus.R;
 
+import layout.cadastroevento.CadastroEvento;
+
 public class Login extends AppCompatActivity {
 
     @Override
@@ -22,6 +24,6 @@ public class Login extends AppCompatActivity {
     }
 
     public void login(View v) {
-        startActivity(new Intent(this, MapsActivity.class));
+        startActivity(new Intent(this, CadastroEvento.class));
     }
 }

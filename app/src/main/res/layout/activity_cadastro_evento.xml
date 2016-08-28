@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="layout.cadastroevento.CadastroEvento"
+    android:background="@color/White">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/etTitulo"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:hint="Título do evento"
+            android:backgroundTint="@color/laranja"
+            android:paddingLeft="10dp"
+            android:textCursorDrawable="@drawable/color_cursor_laranja" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dialog"
+            android:layout_below="@+id/etTitulo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText4"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/editText"
+                android:layout_below="@+id/spinner1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/spinner1"
+                android:layout_alignEnd="@+id/spinner1"
+                android:hint="Data de Início"
+                android:layout_weight="0.4"
+                android:paddingLeft="10dp"
+                android:backgroundTint="@color/laranja"
+                android:textCursorDrawable="@drawable/color_cursor_laranja"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/editText2"
+                android:layout_below="@+id/editText"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:hint="Horário de Início"
+                android:layout_alignRight="@+id/editText4"
+                android:layout_alignEnd="@+id/editText4"
+                android:layout_weight="0.4"
+                android:paddingLeft="10dp"
+                android:backgroundTint="@color/laranja"
+                android:textCursorDrawable="@drawable/color_cursor_laranja"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText4"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/editText5"
+                android:layout_below="@+id/spinner1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/spinner1"
+                android:layout_alignEnd="@+id/spinner1"
+                android:hint="Data de Término"
+                android:layout_weight="0.4"
+                android:backgroundTint="@color/laranja"
+                android:textCursorDrawable="@drawable/color_cursor_laranja"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/editText6"
+                android:layout_below="@+id/editText5"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:hint="Horário de Término"
+                android:layout_alignRight="@+id/editText4"
+                android:layout_alignEnd="@+id/editText4"
+                android:layout_weight="0.4"
+                android:backgroundTint="@color/laranja"
+                android:textCursorDrawable="@drawable/color_cursor_laranja"
+                />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText3"
+            android:hint="Local"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/laranja"
+            android:textCursorDrawable="@drawable/color_cursor_laranja"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editText7"
+            android:hint="Descrição"
+            android:lines="5"
+            android:gravity="top"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/laranja"
+            android:textCursorDrawable="@drawable/color_cursor_laranja"/>
+        
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Criar"
+                android:id="@+id/button"
+                android:layout_weight="0.5"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:id="@+id/button2"
+                android:layout_weight="0.5"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+
