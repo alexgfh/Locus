@@ -19,6 +19,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -42,7 +43,8 @@ import java.util.ArrayList;
 import layout.cadastroevento.CadastroEvento;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
-        GoogleMap.OnMapLongClickListener, CreateEventDialog.EditNameDialogListener {
+        GoogleMap.OnMapLongClickListener, CreateEventDialog.EditNameDialogListener,
+        GoogleMap.OnInfoWindowClickListener {
 
     private String allEventsJSON;
     private GoogleMap mMap;
@@ -138,7 +140,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void addEvent(String title, String description, LatLng latLng) {
         Event event = new Event(title, description, latLng.latitude, latLng.longitude);
         EventProvider.addEvent(event, this);
-        mMap.addMarker(new MarkerOptions().position(latLng).title(title));
+        Marker marker = mMap.addMarker(new MarkerOptions().position(latLng).title(title));
+        marker.setTag(event);
         Toast toast = Toast.makeText(this.getApplicationContext(), "Evento Criado!", Toast.LENGTH_LONG);
         toast.show();
     }
@@ -172,6 +175,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         this.addEvent(title, description, currentCreation);
     }
 
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+    }
 
     public class BackgroundTask extends AsyncTask<String, Void, String> {
 
