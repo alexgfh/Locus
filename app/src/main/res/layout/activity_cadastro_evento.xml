@@ -159,7 +159,8 @@
                 android:text="Criar"
                 android:id="@+id/button"
                 android:layout_weight="0.5"
-                android:onClick="cadastrar" />
+                android:onClick="cadastrar"
+                android:clickable="false" />
 
             <Button
                 android:layout_width="match_parent"
@@ -167,7 +168,8 @@
                 android:text="Cancelar"
                 android:id="@+id/button2"
                 android:layout_weight="0.5"
-                />
+                android:clickable="false"
+                android:onClick="cancel" />
         </LinearLayout>
 
     </LinearLayout>

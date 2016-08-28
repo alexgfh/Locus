@@ -18,7 +18,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -37,12 +39,17 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import layout.cadastroevento.CadastroEvento;
+import layout.visualizarEvento.VisualizarEventos;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
-        GoogleMap.OnMapLongClickListener, CreateEventDialog.EditNameDialogListener {
+        GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
 
     private String allEventsJSON;
     private GoogleMap mMap;
@@ -76,6 +83,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         mMap.setOnMapLongClickListener(this);
+        mMap.setOnInfoWindowClickListener(this);
 
         // Add a marker in Sydney and move the camera
 /*        ArrayList<Event> list = EventProvider.getEventList(this);
@@ -117,10 +125,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 double longitude = jObject.getDouble("longitude");
                 int tipo = jObject.getInt("tipo");
                 String inicio = jObject.getString("inicio");
-                String fim = jObject.getString("inicio");
-                Event event = new Event(titulo, descricao, latitude, longitude);
+                String fim = jObject.getString("fim");
+
+                DateFormat df = new SimpleDateFormat("y-M-d H:m:s");
+                Event event = new Event(titulo, descricao, latitude, longitude, df.parse(inicio), df.parse(fim));
                 result.add(event);
             } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
@@ -131,14 +143,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ArrayList<Event> eventList = getEventsFromJSON(allEventsJSON);
         mMap.clear();
         for (Event event : eventList) {
-            mMap.addMarker(new MarkerOptions().position(new LatLng(event.latitude, event.longitude)).title(event.title));
+            float hue = BitmapDescriptorFactory.HUE_RED;
+            /*Date now = new Date();
+            if (event.startDate.before(now) && event.endDate.after(now) ) {
+                hue = BitmapDescriptorFactory.HUE_RED;
+            }*/
+            Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(event.latitude, event.longitude)).title(event.title)
+            .icon(BitmapDescriptorFactory.defaultMarker(hue)));
+            marker.setTag(event);
         }
     }
 
-    private void addEvent(String title, String description, LatLng latLng) {
-        Event event = new Event(title, description, latLng.latitude, latLng.longitude);
+    private void addEvent(String title, String description, LatLng latLng, Date startDate, Date endDate) {
+        Event event = new Event(title, description, latLng.latitude, latLng.longitude, startDate, endDate);
         EventProvider.addEvent(event, this);
-        mMap.addMarker(new MarkerOptions().position(latLng).title(title));
+        Marker marker = mMap.addMarker(new MarkerOptions().position(latLng).title(title));
+        marker.setTag(event);
         Toast toast = Toast.makeText(this.getApplicationContext(), "Evento Criado!", Toast.LENGTH_LONG);
         toast.show();
     }
@@ -162,19 +182,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if (resultCode == RESULT_OK) {
                 String titulo = data.getStringExtra("titulo");
                 String descricao = data.getStringExtra("descricao");
-                addEvent(titulo, descricao, currentCreation);
+                DateFormat df = new SimpleDateFormat("y-M-d H:m:s");
+                Date startDate = null;
+                Date endDate = null;
+                try {
+                    startDate = df.parse(data.getStringExtra("inicio"));
+                    endDate = df.parse(data.getStringExtra("fim"));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                addEvent(titulo, descricao, currentCreation, startDate, endDate);
             }
         }
     }
 
     @Override
-    public void onFinishEditDialog(String title, String description) {
-        this.addEvent(title, description, currentCreation);
+    public void onInfoWindowClick(Marker marker) {
+        Intent intent = new Intent(this, VisualizarEventos.class);
+        Event event = (Event) marker.getTag();
+        intent.putExtra("titulo", event.title);
+        intent.putExtra("latitude", event.latitude);
+        intent.putExtra("longitude", event.longitude);
+        intent.putExtra("descricao", event.description);
+        startActivity(intent);
     }
 
-
     public class BackgroundTask extends AsyncTask<String, Void, String> {
-
         Context ctx;
 
         BackgroundTask(Context ctx)
