@@ -80,13 +80,7 @@ public class EventProvider {
                 String.valueOf(event.longitude),event.local,String.valueOf(event.tipo),df.format(inicio),df.format(fim) );
 
         /*
-        String method = "registerUser";
 
-        String nome = "Teste";
-        String senha = "Testando";
-
-        BackgroundTask backgroundTask = new BackgroundTask(ctx);
-        backgroundTask.execute(method,nome,senha);
         */
     }
 }

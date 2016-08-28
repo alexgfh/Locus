@@ -5,6 +5,9 @@ package com.dcc.hackathon.locus;
  */
 public class User {
 
+
+
+    String usuario;
     int id;
 
     public int getId() {
@@ -31,12 +34,21 @@ public class User {
         this.senha = senha;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
     String nome;
     String senha;
 
-    public User()
+    public User(String nome, String usuario, String senha)
     {
         this.nome = nome;
+        this.usuario = usuario;
         this.senha = senha;
 
     }
