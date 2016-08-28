@@ -159,7 +159,7 @@
                 android:text="Criar"
                 android:id="@+id/button"
                 android:layout_weight="0.5"
-                />
+                android:onClick="cadastrar" />
 
             <Button
                 android:layout_width="match_parent"
