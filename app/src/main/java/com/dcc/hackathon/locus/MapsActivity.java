@@ -207,6 +207,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         intent.putExtra("titulo", event.title);
         intent.putExtra("latitude", event.latitude);
         intent.putExtra("longitude", event.longitude);
+        intent.putExtra("tipo", event.tipo);
+        DateFormat df = new SimpleDateFormat("y-M-d H:m:s");
+        intent.putExtra("inicio", df.format(event.startDate));
+        intent.putExtra("fim", df.format(event.endDate));
         intent.putExtra("descricao", event.description);
         startActivity(intent);
     }

@@ -69,15 +69,14 @@ public class EventProvider {
 
         String method = "registerEvent";
 
-        int tipo = 7; //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
-        Date inicio = event.startDate; //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
-        Date fim = event.endDate; //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
+        Date inicio = event.startDate;
+        Date fim = event.endDate;
 
         DateFormat df = new SimpleDateFormat("y-M-d H:m:s");
 
         BackgroundTask backgroundTask = new BackgroundTask(ctx);
         backgroundTask.execute(method,event.title, event.description, String.valueOf(event.latitude),
-                String.valueOf(event.longitude),String.valueOf(tipo),df.format(inicio),df.format(fim) );
+                String.valueOf(event.longitude),String.valueOf(event.tipo),df.format(inicio),df.format(fim) );
 
         /*
         String method = "registerUser";

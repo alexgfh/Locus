@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.dcc.hackathon.locus.R;
+import com.dcc.hackathon.locus.TiposDeEvento;
 
 public class CadastroEvento extends AppCompatActivity {
 
@@ -19,7 +20,8 @@ public class CadastroEvento extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_evento);
 
         Spinner dropdown = (Spinner)findViewById(R.id.spinner1);
-        String[] items = new String[]{"Tipo de evento", "Festa", "Velório", "Aula"};
+        String[] items = TiposDeEvento.names.toArray(new String[TiposDeEvento.names.size()]);
+        items[0] = "Tipo de evento";
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
     }
@@ -37,7 +39,8 @@ public class CadastroEvento extends AppCompatActivity {
         Intent intent = new Intent();
 
         intent.putExtra("titulo",  titulo.getText().toString());
-        intent.putExtra("tipo",  spinner.getSelectedItemId());
+        int tipo = (int)spinner.getSelectedItemId();
+        intent.putExtra("tipo",  tipo);
         intent.putExtra("inicio",  datainicio.getText().toString() + " " + horainicio.getText().toString());
         intent.putExtra("fim",  datafim.getText().toString() + " " + horafim.getText().toString());
         intent.putExtra("local",  local.getText().toString());

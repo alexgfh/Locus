@@ -9,6 +9,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.dcc.hackathon.locus.R;
+import com.dcc.hackathon.locus.TiposDeEvento;
 
 import org.w3c.dom.Text;
 
@@ -28,7 +29,7 @@ public class VisualizarEventos extends AppCompatActivity {
         TextView descricao  = (TextView)findViewById(R.id.editText7);
 
         titulo.setText(intent.getStringExtra("titulo"));
-        //tipo.setText(intent.getStringExtra("tipo"));
+        tipo.setText(TiposDeEvento.get(intent.getIntExtra("tipo", 0)));
         descricao.setText(intent.getStringExtra("descricao"));
         datahora.setText(intent.getStringExtra("inicio") + " até " + intent.getStringExtra("fim"));
         String locationText = intent.getDoubleExtra("latitude", 0.0) + ", " + intent.getDoubleExtra("longitude", 0.0);

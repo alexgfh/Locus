@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by Alex on 8/28/2016.
  */
 public class TiposDeEvento {
-    private static ArrayList<String> names = new ArrayList<String>();
+    public static ArrayList<String> names = new ArrayList<String>();
 
     static {
         names.add("");
