@@ -92,6 +92,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ICExLocation));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(16.0f));
+
+        Toast.makeText(MapsActivity.this, "Para adicionar um evento, pressione num ponto do mapa", Toast.LENGTH_LONG).show();
     }
 
     private ArrayList<Event> getEventsFromJSON(String allEventsJSON) {
@@ -139,9 +141,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if (event.endDate.before(now)) {
                 continue;
             }
-            float hue = BitmapDescriptorFactory.HUE_BLUE;
+            float hue = BitmapDescriptorFactory.HUE_RED;
             if (event.startDate.before(now) && event.endDate.after(now) ) {
-                hue = BitmapDescriptorFactory.HUE_RED;
+                hue = BitmapDescriptorFactory.HUE_GREEN;
             }
             Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(event.latitude, event.longitude)).title(event.title)
             .icon(BitmapDescriptorFactory.defaultMarker(hue)));
@@ -153,9 +155,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Event event = new Event(title, description, latLng.latitude, latLng.longitude, local, tipo, startDate, endDate);
         EventProvider.addEvent(event, this);
         Date now = new Date();
-        float hue = BitmapDescriptorFactory.HUE_BLUE;
+        float hue = BitmapDescriptorFactory.HUE_RED;
         if (event.startDate.before(now) && event.endDate.after(now) ) {
-            hue = BitmapDescriptorFactory.HUE_RED;
+            hue = BitmapDescriptorFactory.HUE_GREEN;
         }
         Marker marker = mMap.addMarker(new MarkerOptions().position(latLng).title(title).icon(BitmapDescriptorFactory.defaultMarker(hue)));
         marker.setTag(event);
