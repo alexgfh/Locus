@@ -32,7 +32,7 @@ public class VisualizarEventos extends AppCompatActivity {
         tipo.setText(TiposDeEvento.get(intent.getIntExtra("tipo", 0)));
         descricao.setText(intent.getStringExtra("descricao"));
         datahora.setText(intent.getStringExtra("inicio") + " até " + intent.getStringExtra("fim"));
-        String locationText = intent.getDoubleExtra("latitude", 0.0) + ", " + intent.getDoubleExtra("longitude", 0.0);
+        String locationText = intent.getStringExtra("local");
         local.setText(locationText);
 
         ImageView imgCapa = (ImageView)findViewById(R.id.imCapa);
