@@ -62,6 +62,7 @@ public class Login extends AppCompatActivity {
             if(user.getUsuario().equals(usuario.getText().toString())) {
                 if(user.getSenha().equals(senha.getText().toString())) {
                     startActivity(new Intent(this, MapsActivity.class));
+                    return;
                 }
                 else {
                     Toast.makeText(this, "Cadastro realizado com sucesso!.", Toast.LENGTH_LONG).show();

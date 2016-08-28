@@ -28,7 +28,8 @@
             android:layout_alignParentEnd="true"
             android:hint="Título do evento"
             android:backgroundTint="@color/laranja"
-            android:textCursorDrawable="@drawable/color_cursor_laranja" />
+            android:textCursorDrawable="@drawable/color_cursor_laranja"
+            android:singleLine="true" />
 
         <Spinner
             android:id="@+id/spinner1"
