@@ -4,6 +4,7 @@ import android.content.Context;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Alex on 8/27/2016.
@@ -13,7 +14,7 @@ public class EventProvider {
 
    String titulo = "Testando";
 
-    public static ArrayList<Event> getEventList() {
+    public static ArrayList<Event> getEventListf() {
         ArrayList<Event> list = new ArrayList<Event>();
         Event event1 = new Event("primeiro", "descricao1", 4.0f, 20.0f);
         Event event2 = new Event("segundo", "descricao2", -5.2f, 18.5f);
@@ -23,11 +24,28 @@ public class EventProvider {
 
     }
 
-    private static String url = "localhost";
+    private static String url = "http://homepages.dcc.ufmg.br/~andre.assis/get_all_events.php";
     private static int timeout = 2;
 
-    public static ArrayList<Event> getEventListFromURL() {
-        JSONObject jArray = JSONfunctions.getJSON(url, 2);
+    public static ArrayList<Event> getEventList(Context ctx) {
+        String method = "receive";
+
+        BackgroundTask backgroundTask = new BackgroundTask(ctx);
+        backgroundTask.execute(method);
+        String JSONString = null;
+        try {
+            JSONString = backgroundTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        JSONObject jArray = null;
+        try {
+            jArray = new JSONObject(JSONString);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         ArrayList<Event> result = new ArrayList<>();
 
         for(int i=0; i < jArray.length(); i++) {
