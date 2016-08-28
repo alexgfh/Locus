@@ -39,6 +39,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import layout.cadastroevento.CadastroEvento;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleMap.OnMapLongClickListener, CreateEventDialog.EditNameDialogListener {
 
@@ -138,14 +140,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private LatLng currentCreation = null;
-
+    static final int CADASTRO_EVENTO = 1;
     @Override
     public void onMapLongClick(LatLng latLng) {
-        //startActivityForResult(new Intent());
-        FragmentManager fm = getSupportFragmentManager();
+        startActivityForResult(new Intent(this, CadastroEvento.class), CADASTRO_EVENTO);
+        currentCreation = latLng;
+        /*FragmentManager fm = getSupportFragmentManager();
         CreateEventDialog createEventDialog = new CreateEventDialog();
         createEventDialog.show(fm, "fragment_edit_name");
         currentCreation = latLng;
+        */
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CADASTRO_EVENTO) {
+            if (resultCode == RESULT_OK) {
+                String titulo = data.getStringExtra("titulo");
+                String descricao = data.getStringExtra("descricao");
+                addEvent(titulo, descricao, currentCreation);
+            }
+        }
     }
 
     @Override
