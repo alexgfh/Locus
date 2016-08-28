@@ -65,11 +65,12 @@ public class Login extends AppCompatActivity {
                     return;
                 }
                 else {
-                    Toast.makeText(this, "Cadastro realizado com sucesso!.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Senha incorreta.", Toast.LENGTH_LONG).show();
                     return;
                 }
             }
         }
+        Toast.makeText(this, "Este usuário não existe.", Toast.LENGTH_LONG).show();
     }
 
     public void cadastrar(View v) {
