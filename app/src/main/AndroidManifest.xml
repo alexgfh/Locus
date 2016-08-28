@@ -9,7 +9,8 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -39,8 +40,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="layout.visualizarEvento.VisualizarEventos">
+
+        </activity>
         <activity android:name="layout.cadastroevento.CadastroEvento" />
-        <activity android:name="layout.menulateral.MenuLateral"></activity>
         <activity android:name="layout.cadastrarusuario.cadastrar_usuario"/>
     </application>
 
