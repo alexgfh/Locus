@@ -3,14 +3,11 @@ package com.dcc.hackathon.locus;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
@@ -28,17 +25,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -121,6 +112,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 JSONObject jObject = jArray.getJSONObject(i);
                 String titulo = jObject.getString("titulo");
                 String descricao = jObject.getString("descricao");
+                String local = jObject.getString("local");
                 double latitude = jObject.getDouble("latitude");
                 double longitude = jObject.getDouble("longitude");
                 int tipo = jObject.getInt("tipo");
@@ -128,7 +120,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String fim = jObject.getString("fim");
 
                 DateFormat df = new SimpleDateFormat("y-M-d H:m:s");
-                Event event = new Event(titulo, descricao, latitude, longitude, tipo, df.parse(inicio), df.parse(fim));
+                Event event = new Event(titulo, descricao, latitude, longitude, local, tipo, df.parse(inicio), df.parse(fim));
                 result.add(event);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -157,10 +149,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    private void addEvent(String title, String description, LatLng latLng, int tipo, Date startDate, Date endDate) {
-        Event event = new Event(title, description, latLng.latitude, latLng.longitude, tipo, startDate, endDate);
+    private void addEvent(String title, String description, LatLng latLng, String local, int tipo, Date startDate, Date endDate) {
+        Event event = new Event(title, description, latLng.latitude, latLng.longitude, local, tipo, startDate, endDate);
         EventProvider.addEvent(event, this);
-        Marker marker = mMap.addMarker(new MarkerOptions().position(latLng).title(title));
+        Date now = new Date();
+        float hue = BitmapDescriptorFactory.HUE_BLUE;
+        if (event.startDate.before(now) && event.endDate.after(now) ) {
+            hue = BitmapDescriptorFactory.HUE_RED;
+        }
+        Marker marker = mMap.addMarker(new MarkerOptions().position(latLng).title(title).icon(BitmapDescriptorFactory.defaultMarker(hue)));
         marker.setTag(event);
         Toast toast = Toast.makeText(this.getApplicationContext(), "Evento Criado!", Toast.LENGTH_LONG);
         toast.show();
@@ -185,6 +182,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if (resultCode == RESULT_OK) {
                 String titulo = data.getStringExtra("titulo");
                 String descricao = data.getStringExtra("descricao");
+                String local = data.getStringExtra("local");
                 int tipo = data.getIntExtra("tipo", 0);
                 DateFormat df = new SimpleDateFormat("y-M-d H:m:s");
                 Date startDate = null;
@@ -195,7 +193,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                addEvent(titulo, descricao, currentCreation, tipo, startDate, endDate);
+                addEvent(titulo, descricao, currentCreation, local, tipo, startDate, endDate);
             }
         }
     }
@@ -207,6 +205,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         intent.putExtra("titulo", event.title);
         intent.putExtra("latitude", event.latitude);
         intent.putExtra("longitude", event.longitude);
+        intent.putExtra("local", event.local);
+        intent.putExtra("tipo", event.tipo);
+        DateFormat df = new SimpleDateFormat("y-M-d H:m:s");
+        intent.putExtra("inicio", df.format(event.startDate));
+        intent.putExtra("fim", df.format(event.endDate));
         intent.putExtra("descricao", event.description);
         startActivity(intent);
     }
