@@ -44,20 +44,21 @@ public class BackgroundTask extends AsyncTask<String, Void, String>{
     protected String doInBackground(String... params) {
 
         String reg_url = "http://homepages.dcc.ufmg.br/~andre.assis/register.php";
+        String reg_url2 = "http://homepages.dcc.ufmg.br/~andre.assis/registerUser.php";
         String rec_url = "http://homepages.dcc.ufmg.br/~andre.assis/get_all_events.php";
         String method = params[0];
-        String title = params[1];
-        String description = params[2];
-        String latitude = params[3];
-        String longitude = params[4];
-        String tipo = params[5];
-        String inicio = params[6];
-        String fim = params[7];
-        if(method.equals("register"))
+        if(method.equals("registerEvent"))
         {
+            String title = params[1];
+            String description = params[2];
+            String latitude = params[3];
+            String longitude = params[4];
+            String tipo = params[5];
+            String inicio = params[6];
+            String fim = params[7];
+
             try {
                 URL url = new URL(reg_url);
-                String titulo = params[1];
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
@@ -116,6 +117,37 @@ public class BackgroundTask extends AsyncTask<String, Void, String>{
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        else if(method.equals("registerUser"))
+        {
+            String nome = params[1];
+            String senha = params[2];
+            try {
+                URL url = new URL(reg_url2);
+                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream OS = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(OS,"UTF-8"));
+                String data = URLEncoder.encode("nome","UTF-8") + "=" + URLEncoder.encode(nome,"UTF-8")
+                        + "&" + URLEncoder.encode("senha","UTF-8") + "=" + URLEncoder.encode(senha,"UTF-8");
+                // Para adicionar mais basta colocar um + "&" + URLEncoder.encode("descricao","UTF-8") + "=" + URLEncoder.encode(descricao,"UTF-8");
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                OS.close();
+                InputStream IS = httpURLConnection.getInputStream();
+                IS.close();
+                return "Registration Success";
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+
         }
 
         return null;

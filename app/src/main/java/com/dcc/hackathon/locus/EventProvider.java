@@ -66,7 +66,8 @@ public class EventProvider {
     }
 
     public static void addEvent(Event event,Context ctx) {
-        String method = "register";
+        
+        String method = "registerEvent";
 
         int tipo = 7; //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
         Date inicio = new Date(); //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
@@ -75,5 +76,15 @@ public class EventProvider {
         BackgroundTask backgroundTask = new BackgroundTask(ctx);
         backgroundTask.execute(method,event.title, event.description, String.valueOf(event.latitude),
                 String.valueOf(event.longitude),String.valueOf(tipo),String.valueOf(inicio),String.valueOf(fim) );
+
+        /*
+        String method = "registerUser";
+
+        String nome = "Teste";
+        String senha = "Testando";
+
+        BackgroundTask backgroundTask = new BackgroundTask(ctx);
+        backgroundTask.execute(method,nome,senha);
+        */
     }
 }
