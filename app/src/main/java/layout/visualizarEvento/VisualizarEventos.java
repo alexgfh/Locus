@@ -13,6 +13,11 @@ import com.dcc.hackathon.locus.TiposDeEvento;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class VisualizarEventos extends AppCompatActivity {
 
     @Override
@@ -28,10 +33,25 @@ public class VisualizarEventos extends AppCompatActivity {
         TextView local  = (TextView)findViewById(R.id.textLocal);
         TextView descricao  = (TextView)findViewById(R.id.editText7);
 
+
+        DateFormat dbDF = new SimpleDateFormat("y-M-d H:m:s");
+        String inicio = intent.getStringExtra("inicio");
+        String fim = intent.getStringExtra("fim");
+        Date dateInicio = null, dateFim = null;
+        try {
+            dateInicio = dbDF.parse(inicio);
+            dateFim = dbDF.parse(fim);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        DateFormat displayDF = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        String displayInicio = displayDF.format(dateInicio);
+        String displayFim = displayDF.format(dateFim);
+
         titulo.setText(intent.getStringExtra("titulo"));
         tipo.setText(TiposDeEvento.get(intent.getIntExtra("tipo", 0)));
         descricao.setText(intent.getStringExtra("descricao"));
-        datahora.setText(intent.getStringExtra("inicio") + " até " + intent.getStringExtra("fim"));
+        datahora.setText(displayInicio + " até " + displayFim);
         String locationText = intent.getStringExtra("local");
         local.setText(locationText);
 
