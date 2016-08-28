@@ -94,6 +94,8 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/button_border"
             android:textColor="#ccffffff"
+            android:onClick="cadastrar"
+            android:clickable="true"
              />
     </LinearLayout>
 </RelativeLayout>
