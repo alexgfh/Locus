@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,34 +8,50 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="layout.visualizarevento.VisualizarEvento"
-    android:background="@color/laranja">
-
+    android:background="@color/White">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:id="@+id/imageView2" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/imCapa"
+        android:src="@drawable/dcc"
+        />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:id="@+id/etTitulo"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:hint="Título do Evento"
-            android:textSize="24sp"
+            android:text="Hackathon 40 anos DCC"
+            android:textSize="20sp"
             android:gravity="center_vertical"
+            android:background="@color/laranja"
+            android:textColor="@color/White"
+            android:paddingLeft="10dp"
             />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:background="#dfdfdf">
+
+
+
+
 
         <TextView
             android:layout_width="match_parent"
@@ -46,10 +62,11 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:hint="Tipo do evento"
-            android:textColorHint="#ccffffff"
+            android:text="Evento Acadêmico"
+            android:textColor="@color/laranja"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
+            android:layout_marginTop="0dp"
             />
 
         <LinearLayout
@@ -64,7 +81,9 @@
                 android:layout_height="match_parent"
                 android:id="@+id/imageView"
                 android:src="@drawable/calendar"
-                android:layout_marginRight="5dp"/>
+                android:layout_marginRight="5dp"
+                android:backgroundTint="@color/laranja"
+                />
 
             <TextView
                 android:layout_width="match_parent"
@@ -77,7 +96,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/spinner1"
                 android:layout_alignEnd="@+id/spinner1"
-                android:hint="Segunda-feira, 12 ago. 2016 - 12h às 20h"
+                android:hint="27/08 às 8h00 ao dia 28/08 às 12h00"
                 android:layout_weight="0.4"
                 android:backgroundTint="@color/laranja"
                 android:textCursorDrawable="@drawable/color_cursor_laranja"
@@ -111,7 +130,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/spinner1"
                 android:layout_alignEnd="@+id/spinner1"
-                android:hint="Gramado da Reitoria - UFMG"
+                android:hint="Anexo U, DCC-UFMG"
                 android:layout_weight="0.4"
                 android:backgroundTint="@color/laranja"
                 android:textCursorDrawable="@drawable/color_cursor_laranja"
@@ -127,15 +146,10 @@
             android:inputType="textMultiLine"
             android:ems="10"
             android:id="@+id/editText7"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum."
+            android:text="O Hackathon é uma das atividades da comemoração dos 40 anos do Departamento de Ciência da Computação. Com o tema 'Vida de estudante na UFMG', este Hackathon busca, além de integrar ainda mais a comunidade do DCC, fornecer uma oportunidade aos alunos de exercitarem sua criatividade com a solução de problemas cotidianos, além de conhecerem outros estudantes."
 
             android:gravity="top"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             />
 
         <LinearLayout
@@ -148,4 +162,12 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/imMapa"
+            android:src="@drawable/mapa"
+            />
+    </LinearLayout>
+
+</ScrollView>
