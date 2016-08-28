@@ -53,9 +53,10 @@ public class BackgroundTask extends AsyncTask<String, Void, String>{
             String description = params[2];
             String latitude = params[3];
             String longitude = params[4];
-            String tipo = params[5];
-            String inicio = params[6];
-            String fim = params[7];
+            String local = params[5];
+            String tipo = params[6];
+            String inicio = params[7];
+            String fim = params[8];
 
             try {
                 URL url = new URL(reg_url);
@@ -68,6 +69,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String>{
                         + "&" + URLEncoder.encode("descricao","UTF-8") + "=" + URLEncoder.encode(description,"UTF-8")
                         + "&" + URLEncoder.encode("latitude","UTF-8") + "=" + URLEncoder.encode(latitude,"UTF-8")
                         + "&" + URLEncoder.encode("longitude","UTF-8") + "=" + URLEncoder.encode(longitude,"UTF-8")
+                        + "&" + URLEncoder.encode("local","UTF-8") + "=" + URLEncoder.encode(local,"UTF-8")
                         + "&" + URLEncoder.encode("tipo","UTF-8") + "=" + URLEncoder.encode(tipo,"UTF-8")
                         + "&" + URLEncoder.encode("inicio","UTF-8") + "=" + URLEncoder.encode(inicio,"UTF-8")
                         + "&" + URLEncoder.encode("fim","UTF-8") + "=" + URLEncoder.encode(fim,"UTF-8");
@@ -154,8 +156,6 @@ public class BackgroundTask extends AsyncTask<String, Void, String>{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
 
         }
 

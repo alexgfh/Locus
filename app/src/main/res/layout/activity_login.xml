@@ -51,7 +51,7 @@
             android:textColor="#ccffffff"
             android:textColorHint="#ccffffff"
             android:paddingLeft="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="130dp"
             android:singleLine="true"
             android:textCursorDrawable="@drawable/color_cursor_white"/>
 
@@ -83,16 +83,35 @@
 
             android:onClick="login" />
 
-        <TextView
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Não tem conta? Cadastrar"
-            android:id="@+id/textView"
-            android:gravity="center"
-            android:textColor="@color/White"
-            android:onClick="cadastrar"
-            android:clickable="true" />
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Não tem conta? "
+                android:id="@+id/textView"
+                android:gravity="right"
+                android:textColor="@color/White"
+                android:layout_weight="0.5"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="@string/cadastrar_underline"
+                android:id="@+id/textView6"
+                android:gravity="left"
+                android:textColor="@color/White"
+                android:onClick="cadastrar"
+                android:clickable="true"
+                android:layout_weight="0.5"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
 
 
     </LinearLayout>

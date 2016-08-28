@@ -20,7 +20,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/etTitulo"
+            android:id="@+id/etEdTitulo"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -37,7 +37,7 @@
             android:layout_marginTop="10dp"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dialog"
-            android:layout_below="@+id/etTitulo"
+            android:layout_below="@+id/etEdTipo"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             />
@@ -71,7 +71,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/etDataInicio"
+                        android:id="@+id/etEdDataInicio"
                         android:text="12/12/2012"
                         android:backgroundTint="@color/laranja"
                         android:layout_weight="0.8"
@@ -111,7 +111,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/etHoraInicio"
+                        android:id="@+id/etEdHoraInicio"
                         android:text="12:30"
                         android:backgroundTint="@color/laranja"
                         android:gravity="center"
@@ -160,7 +160,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/etDataFim"
+                        android:id="@+id/etEdDataFim"
                         android:text="12/12/2012"
                         android:backgroundTint="@color/laranja"
                         android:layout_weight="0.8"
@@ -201,7 +201,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/etHoraFim"
+                        android:id="@+id/etEdHoraFim"
                         android:text="12:30"
                         android:backgroundTint="@color/laranja"
                         android:gravity="center"
@@ -227,7 +227,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText3"
+            android:id="@+id/etEdLocal"
             android:hint="Local"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/laranja"
@@ -238,7 +238,7 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:ems="10"
-            android:id="@+id/editText7"
+            android:id="@+id/etEdDescricao"
             android:hint="Descrição"
             android:lines="5"
             android:gravity="top"
@@ -257,8 +257,8 @@
                 android:layout_height="wrap_content"
                 android:text="Criar"
                 android:id="@+id/button"
-                android:layout_weight="0.5"
-                android:onClick="cadastrar"
+                android:layout_weight="0.3"
+                android:onClick="salvar"
                 android:clickable="false" />
 
             <Button
@@ -266,13 +266,23 @@
                 android:layout_height="wrap_content"
                 android:text="Cancelar"
                 android:id="@+id/button2"
-                android:layout_weight="0.5"
+                android:layout_weight="0.3"
                 android:clickable="false"
                 android:onClick="cancel" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Deletar"
+                android:id="@+id/button3"
+                android:layout_weight="0.3"
+                android:clickable="false"
+                android:onClick="deletar"
+                />
         </LinearLayout>
 
     </LinearLayout>
 
 </RelativeLayout>
+
 
 

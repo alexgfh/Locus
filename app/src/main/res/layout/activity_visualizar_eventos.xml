@@ -101,6 +101,7 @@
                 android:backgroundTint="@color/laranja"
                 android:textCursorDrawable="@drawable/color_cursor_laranja"
                 android:gravity="center_vertical"
+
                 />
 
         </LinearLayout>
@@ -143,11 +144,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
+            android:inputType="textMultiLine|textNoSuggestions"
             android:ems="10"
             android:id="@+id/editText7"
-            android:text="O Hackathon é uma das atividades da comemoração dos 40 anos do Departamento de Ciência da Computação. Com o tema 'Vida de estudante na UFMG', este Hackathon busca, além de integrar ainda mais a comunidade do DCC, fornecer uma oportunidade aos alunos de exercitarem sua criatividade com a solução de problemas cotidianos, além de conhecerem outros estudantes."
-
+            android:text="O Hackathon é uma das ahdsfkkjdash atividades da comemoração dos 40 anos do Departamento de Ciência da Computação. Com o tema 'Vida de estudante na UFMG', este Hackathon busca, além de integrar ainda mais a comunidade do DCC, fornecer uma oportunidade aos alunos de exercitarem sua criatividade com a solução de problemas cotidianos, além de conhecerem outros estudantes."
             android:gravity="top"
             android:layout_marginTop="20dp"
             />
