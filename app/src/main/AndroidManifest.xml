@@ -42,7 +42,7 @@
         </activity>
         <activity
             android:name="layout.visualizarEvento.VisualizarEventos"
-            android:label="Vizualizar Evento"></activity>
+            android:label="Evento"></activity>
         <activity
             android:name="layout.cadastroevento.CadastroEvento"
             android:label="Cadastrar Evento" />
