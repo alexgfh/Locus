@@ -78,13 +78,7 @@ public class EventProvider {
                 String.valueOf(event.longitude),String.valueOf(tipo),String.valueOf(inicio),String.valueOf(fim) );
 
         /*
-        String method = "registerUser";
 
-        String nome = "Teste";
-        String senha = "Testando";
-
-        BackgroundTask backgroundTask = new BackgroundTask(ctx);
-        backgroundTask.execute(method,nome,senha);
         */
     }
 }

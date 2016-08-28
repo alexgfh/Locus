@@ -28,7 +28,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String>{
 
     Context ctx;
 
-    BackgroundTask(Context ctx)
+    public BackgroundTask(Context ctx)
     {
         this.ctx = ctx;
 
@@ -121,7 +121,8 @@ public class BackgroundTask extends AsyncTask<String, Void, String>{
         else if(method.equals("registerUser"))
         {
             String nome = params[1];
-            String senha = params[2];
+            String usuario = params[2];
+            String senha = params[3];
             try {
                 URL url = new URL(reg_url2);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
@@ -130,6 +131,7 @@ public class BackgroundTask extends AsyncTask<String, Void, String>{
                 OutputStream OS = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(OS,"UTF-8"));
                 String data = URLEncoder.encode("nome","UTF-8") + "=" + URLEncoder.encode(nome,"UTF-8")
+                        + "&" + URLEncoder.encode("usuario","UTF-8") + "=" + URLEncoder.encode(usuario,"UTF-8")
                         + "&" + URLEncoder.encode("senha","UTF-8") + "=" + URLEncoder.encode(senha,"UTF-8");
                 // Para adicionar mais basta colocar um + "&" + URLEncoder.encode("descricao","UTF-8") + "=" + URLEncoder.encode(descricao,"UTF-8");
                 bufferedWriter.write(data);
