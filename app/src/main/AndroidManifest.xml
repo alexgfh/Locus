@@ -41,6 +41,7 @@
             </intent-filter>
         </activity>
 
+
         <activity android:name="layout.visualizarEvento.VisualizarEventos"
             android:label="Vizualizar Evento" >
 

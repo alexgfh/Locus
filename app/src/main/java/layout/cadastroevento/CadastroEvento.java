@@ -186,13 +186,16 @@ public class CadastroEvento extends AppCompatActivity {
 
         intent.putExtra("titulo",  titulo.getText().toString());
         intent.putExtra("tipo",  spinner.getSelectedItemId());
-        intent.putExtra("datainicio",  datainicio.getText().toString());
-        intent.putExtra("horainicio",  horainicio.getText().toString());
-        intent.putExtra("datafim",  datafim.getText().toString());
-        intent.putExtra("horafim",  horafim.getText().toString());
+        intent.putExtra("inicio",  datainicio.getText().toString() + " " + horainicio.getText().toString());
+        intent.putExtra("fim",  datafim.getText().toString() + " " + horafim.getText().toString());
         intent.putExtra("local",  local.getText().toString());
         intent.putExtra("descricao",  descricao.getText().toString());
         setResult(Activity.RESULT_OK, intent);
+        finish();
+    }
+
+    public void cancel(View v) {
+        setResult(Activity.RESULT_CANCELED, new Intent());
         finish();
     }
 }
