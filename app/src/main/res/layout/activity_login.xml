@@ -91,7 +91,8 @@
             android:id="@+id/textView"
             android:gravity="center"
             android:textColor="@color/White"
-            android:onClick="cadastrar"/>
+            android:onClick="cadastrar"
+            android:clickable="true" />
 
 
     </LinearLayout>

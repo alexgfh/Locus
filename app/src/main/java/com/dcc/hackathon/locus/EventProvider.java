@@ -66,7 +66,7 @@ public class EventProvider {
     }
 
     public static void addEvent(Event event,Context ctx) {
-        
+
         String method = "registerEvent";
 
         int tipo = 7; //Deletar essa variável após o Event estiver pronto e preenchendo as variáveis.
