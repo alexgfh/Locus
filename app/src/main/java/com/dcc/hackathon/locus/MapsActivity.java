@@ -2,10 +2,16 @@ package com.dcc.hackathon.locus;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -36,7 +42,7 @@ import java.util.ArrayList;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleMap.OnMapLongClickListener, CreateEventDialog.EditNameDialogListener {
 
-    String allEventsJSON;
+    private String allEventsJSON;
     private GoogleMap mMap;
 
     @Override
@@ -72,10 +78,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for (Event event : list) {
             mMap.addMarker(new MarkerOptions().position(new LatLng(event.latitude, event.longitude)).title(event.title));
         }*/
-
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LocationManager locationManager = (LocationManager)
+                getSystemService(Context.LOCATION_SERVICE);
+        MyLocationListener locationListener = new MyLocationListener(mMap);
+        if ( Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
     }
 
     private ArrayList<Event> getEventsFromJSON(String allEventsJSON) {
@@ -126,11 +137,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         toast.show();
     }
 
-    LatLng currentCreation = null;
+    private LatLng currentCreation = null;
 
     @Override
     public void onMapLongClick(LatLng latLng) {
-
+        //startActivityForResult(new Intent());
         FragmentManager fm = getSupportFragmentManager();
         CreateEventDialog createEventDialog = new CreateEventDialog();
         createEventDialog.show(fm, "fragment_edit_name");
