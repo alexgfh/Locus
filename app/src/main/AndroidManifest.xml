@@ -32,7 +32,7 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:label="Explorar" />
         <activity android:name="layout.login.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,10 +41,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="layout.visualizarEvento.VisualizarEventos">
+        <activity android:name="layout.visualizarEvento.VisualizarEventos"
+            android:label="Vizualizar Evento" >
 
         </activity>
-        <activity android:name="layout.cadastroevento.CadastroEvento" />
+        <activity android:name="layout.cadastroevento.CadastroEvento"
+            android:label="Cadastrar Evento" />
         <activity android:name="layout.cadastrarusuario.cadastrar_usuario"/>
     </application>
 
