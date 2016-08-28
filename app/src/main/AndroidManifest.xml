@@ -30,9 +30,7 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps">
-
-        </activity>
+            android:label="@string/title_activity_maps" />
         <activity android:name="layout.login.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,6 +38,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="layout.cadastroevento.CadastroEvento" />
+        <activity android:name="layout.menulateral.MenuLateral"></activity>
     </application>
 
 </manifest>
