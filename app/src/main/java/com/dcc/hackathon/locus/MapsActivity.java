@@ -47,6 +47,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private String allEventsJSON;
     private GoogleMap mMap;
 
+    private final LatLng ICExLocation = new LatLng(-19.869324, -43.965365);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +91,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(ICExLocation));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(16.0f));
     }
 
     private ArrayList<Event> getEventsFromJSON(String allEventsJSON) {
